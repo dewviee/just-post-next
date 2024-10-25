@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
+import ToastContainerWrapper from "@/components/ToastContainerWrapper";
 
 export const metadata: Metadata = {
   title: "Just Post",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ToastContainerWrapper />
+        {children}
+      </body>
     </html>
   );
 }

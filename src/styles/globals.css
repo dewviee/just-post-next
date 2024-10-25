@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  @apply bg-iceBlue text-black;
+  @apply bg-slate-100 text-black;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     @apply bg-black text-white;
   }
-}
+} */
 
 body {
   font-family: Arial, Helvetica, sans-serif;
