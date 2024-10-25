@@ -10,7 +10,7 @@ export async function errorInterceptor(err: unknown) {
   const axiosErr = err as AxiosError;
   const response = axiosErr.response?.data as TApiError;
 
-  switch (response.errorCode) {
+  switch (response?.errorCode) {
     case EAuthErrCode.ACCESS_TOKEN_EXPIRED: {
       const accessToken = await refreshAccessToken();
       localStorage.setItem("accessToken", accessToken);
