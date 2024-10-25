@@ -1,5 +1,9 @@
 {
-  "plugins": [],
+  "plugins": [
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "pluginSearchDirs": false,
   "endOfLine": "auto",
   "singleQuote": false
 }
