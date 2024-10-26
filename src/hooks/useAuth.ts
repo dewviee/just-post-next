@@ -24,7 +24,7 @@ export const useLogin = () => {
   const [password, setPassword] = useState("");
   const [isFetching, setIsFetching] = useState(false);
 
-  const login = async (onError?: TOnApiError) => {
+  const login = async () => {
     const payload: TLoginRequest = {
       identifier: identifier,
       password: password,
@@ -35,8 +35,8 @@ export const useLogin = () => {
       setIsFetching,
     );
 
-    if (onError && (error as TApiError)?.message) {
-      onError(error as TApiError);
+    if ((error as TApiError)?.message) {
+      handleLoginError(error as TApiError);
       return;
     }
 
@@ -48,6 +48,17 @@ export const useLogin = () => {
     const accessToken = (result?.data as TLoginResponse).accessToken;
     setLocalStorageItem("ACCESS_TOKEN", accessToken);
     router.push("/");
+  };
+
+  const handleLogin = (e: FormEvent<HTMLElement>) => {
+    e.preventDefault();
+    login();
+  };
+
+  const handleLoginError: TOnApiError = (error) => {
+    if (error?.message) {
+      toast.error(error.message);
+    }
   };
 
   const handleSetIdentifier = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,8 +74,8 @@ export const useLogin = () => {
     password,
     isFetching,
     setIsFetching,
-    login,
     handleSetIdentifier,
+    handleLogin,
     handleSetPassword,
   };
 };

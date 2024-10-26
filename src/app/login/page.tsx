@@ -3,25 +3,16 @@ import Button from "@/components/Button";
 import TextField from "@/components/TextField";
 import { useLogin } from "@/hooks/useAuth";
 import Link from "next/link";
-import { toast } from "react-toastify";
 
 export default function Login() {
   const {
     identifier,
-    login,
     isFetching,
     password,
     handleSetIdentifier,
     handleSetPassword,
+    handleLogin,
   } = useLogin();
-
-  const handleLogin = () => {
-    login((error) => {
-      if (error?.message) {
-        toast.error(error.message);
-      }
-    });
-  };
 
   return (
     <div className="mx-10 flex flex-col items-center justify-center gap-2 p-10">
