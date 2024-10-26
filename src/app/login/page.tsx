@@ -26,13 +26,15 @@ export default function Login() {
   return (
     <div className="mx-10 flex flex-col items-center justify-center gap-2 p-10">
       <TextField
-        value={identifier}
-        handleSetValue={handleSetIdentifier}
+        inputName="identifier"
+        inputValue={identifier}
+        onInputChange={handleSetIdentifier}
         label="Username"
       />
       <TextField
-        value={password}
-        handleSetValue={handleSetPassword}
+        inputName="password"
+        inputValue={password}
+        onInputChange={handleSetPassword}
         label="Password"
         type="password"
       />
