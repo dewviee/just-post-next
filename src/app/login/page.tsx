@@ -25,28 +25,30 @@ export default function Login() {
 
   return (
     <div className="mx-10 flex flex-col items-center justify-center gap-2 p-10">
-      <TextField
-        inputName="identifier"
-        inputValue={identifier}
-        onInputChange={handleSetIdentifier}
-        label="Username"
-      />
-      <TextField
-        inputName="password"
-        inputValue={password}
-        onInputChange={handleSetPassword}
-        label="Password"
-        type="password"
-      />
-      <div>
-        {"Don't have account? Register "}
-        <Link href={"register"} className="appearance-none text-primary">
-          here
-        </Link>
-      </div>
-      <Button onClick={handleLogin} disabled={isFetching}>
-        Login
-      </Button>
+      <form onSubmit={handleLogin} className="flex flex-col items-center gap-2">
+        <TextField
+          inputName="identifier"
+          inputValue={identifier}
+          onInputChange={handleSetIdentifier}
+          label="Username"
+        />
+        <TextField
+          inputName="password"
+          inputValue={password}
+          onInputChange={handleSetPassword}
+          label="Password"
+          type="password"
+        />
+        <div>
+          {"Don't have account? Register "}
+          <Link href={"register"} className="appearance-none text-primary">
+            here
+          </Link>
+        </div>
+        <Button type="submit" disabled={isFetching}>
+          Login
+        </Button>
+      </form>
     </div>
   );
 }
