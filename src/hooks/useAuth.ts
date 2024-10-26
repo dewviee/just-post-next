@@ -24,7 +24,7 @@ export const useLogin = () => {
   const [password, setPassword] = useState("");
   const [isFetching, setIsFetching] = useState(false);
 
-  const login = async (onError?: (error: TApiError) => void) => {
+  const login = async (onError?: TOnApiError) => {
     const payload: TLoginRequest = {
       identifier: identifier,
       password: password,
