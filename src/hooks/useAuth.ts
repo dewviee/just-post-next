@@ -50,12 +50,12 @@ export const useLogin = () => {
     router.push("/");
   };
 
-  const handleSetIdentifier = (newIdentifier: string) => {
-    setIdentifier(newIdentifier);
+  const handleSetIdentifier = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIdentifier(e.target.value);
   };
 
-  const handleSetPassword = (newPassword: string) => {
-    setPassword(newPassword);
+  const handleSetPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
   return {
