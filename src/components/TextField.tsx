@@ -1,25 +1,34 @@
+import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
 import Input from "./Input";
 
 type TextFieldProps = React.HTMLAttributes<HTMLDivElement> & {
+  inputName: string;
+  onInputChange?: ChangeEventHandler<HTMLInputElement>;
   label?: string;
   className?: string;
-  value: string;
+  inputValue: string | number;
+  inputType?: HTMLInputTypeAttribute;
   type?: "text" | "password";
-  handleSetValue: (value: string) => void;
 };
 
 const TextField = ({
+  inputName,
+  onInputChange,
   label,
   className,
-  value,
-  type = "text",
-  handleSetValue,
+  inputValue,
+  inputType = "text",
   ...props
 }: TextFieldProps) => {
   return (
     <div {...props} className={`flex w-60 flex-col rounded-sm ${className}`}>
       {label && <div>{label}</div>}
-      <Input type={type} value={value} handleSetValue={handleSetValue} />
+      <Input
+        name={inputName}
+        onChange={onInputChange}
+        type={inputType}
+        value={inputValue}
+      />
     </div>
   );
 };
