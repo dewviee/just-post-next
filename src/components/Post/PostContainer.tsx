@@ -60,12 +60,12 @@ export function PostContainer({ className, ...props }: PostContainerProps) {
   }, [isFetching, isCooldown, getPostWhenBottom, latestLoadID, startCooldown]);
 
   return (
-    <div {...props} className={cn("", className)}>
+    <div {...props} className={cn("pb-3", className)}>
       {posts.map((post) => (
         <PostItem key={post.id} post={post} />
       ))}
 
-      {(isFetching || isCooldown) && <Spinner />}
+      {(isFetching || isCooldown) && <Spinner className="p-2" />}
     </div>
   );
 }

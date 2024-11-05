@@ -14,11 +14,18 @@ export function PostItem({ className, post }: PostItemProps) {
   );
 
   return (
-    <div className={cn("flex flex-col p-4", className)}>
+    <div
+      className={cn(
+        "flex flex-col border border-black border-opacity-5 p-4 hover:bg-gray-50",
+        className,
+      )}
+    >
       <div className="space-x-1">
-        <span className="font-bold">{post.user.username}</span>
-        <span>·</span>
-        <span>{formattedDate}</span>
+        <span className="align-bottom font-bold">{post.user.username}</span>
+        <span className="align-bottom text-gray-400">·</span>
+        <span className="inline-block align-bottom text-sm text-gray-400">
+          {formattedDate}
+        </span>
       </div>
       <span className="whitespace-normal break-words">{post.content}</span>
     </div>
