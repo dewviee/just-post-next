@@ -21,11 +21,9 @@ export function PostItem({ className, post }: PostItemProps) {
       )}
     >
       <div className="space-x-1">
-        <span className="align-bottom font-bold">{post.user.username}</span>
-        <span className="align-bottom text-gray-400">·</span>
-        <span className="inline-block align-bottom text-sm text-gray-400">
-          {formattedDate}
-        </span>
+        <span className="font-bold">{post.user.username}</span>
+        <span className="text-gray-400">·</span>
+        <span className="text-gray-400">{formattedDate}</span>
       </div>
       <span className="whitespace-normal break-words">{post.content}</span>
     </div>
