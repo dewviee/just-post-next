@@ -1,10 +1,11 @@
-import type { RefreshAccessTokenResponse } from "@/types/auth.type";
-import type { AxiosError, AxiosRequestConfig } from "axios";
-import api from "./instance";
+import { LOCAL_STORAGE_KEYS } from "@/constants/localStorageKeys";
 import { EAuthErrCode } from "@/enums/auth";
 import type { TApiError } from "@/types/api.type";
-import { pathJustPostV1 } from "./path";
+import type { RefreshAccessTokenResponse } from "@/types/auth.type";
+import type { AxiosError, AxiosRequestConfig } from "axios";
 import { redirect } from "next/navigation";
+import api from "./instance";
+import { pathJustPostV1 } from "./path";
 
 export async function errorInterceptor(err: unknown) {
   const axiosErr = err as AxiosError;
@@ -39,7 +40,7 @@ async function refreshAccessToken() {
   );
   const resPayload = result.data as RefreshAccessTokenResponse;
 
-  localStorage.setItem("accessToken", resPayload.data.token);
+  localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, resPayload.data.token);
 
   return resPayload.data.token;
 }
