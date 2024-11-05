@@ -14,6 +14,8 @@ type TGetPostParams = {
   latestLoadID: string | undefined;
   setLatestLoadID: React.Dispatch<React.SetStateAction<string | undefined>>;
   controller?: AbortController;
+  isCooldown?: boolean;
+  startCooldown?: () => void;
 };
 
 type TGetPost = (params: TGetPostParams) => Promise<void>;
@@ -31,8 +33,10 @@ export const useGetPost = () => {
     latestLoadID,
     setLatestLoadID,
     controller,
+    isCooldown,
+    startCooldown,
   }) => {
-    if (isFetching) return;
+    if (isFetching || isCooldown) return;
     setIsFetching(true);
 
     const payload: TGetPostRequest = {
@@ -70,11 +74,20 @@ export const useGetPost = () => {
     }
 
     setIsFetching(false);
+    startCooldown?.();
   };
 
   const getPostWhenBottom: TGetPostWhenBottom = (
     scrollPercentage,
-    { isFetching, setIsFetching, setPosts, latestLoadID, setLatestLoadID },
+    {
+      isFetching,
+      setIsFetching,
+      setPosts,
+      latestLoadID,
+      setLatestLoadID,
+      isCooldown,
+      startCooldown,
+    },
   ) => {
     if (scrollPercentage > 90 && !isFetching) {
       const params: TGetPostParams = {
@@ -83,6 +96,8 @@ export const useGetPost = () => {
         setPosts,
         latestLoadID,
         setLatestLoadID,
+        isCooldown,
+        startCooldown,
       };
       getPost(params);
     }

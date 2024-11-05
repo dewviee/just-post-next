@@ -1,3 +1,5 @@
+import { postConfig } from "@/config/post.config";
+import { useCountdownCooldown } from "@/hooks/useCountdownCooldown";
 import { useGetPost } from "@/hooks/usePost";
 import { TPost } from "@/types/post.type";
 import { cn } from "@/utils/classname";
@@ -13,6 +15,10 @@ export function PostContainer({ className, ...props }: PostContainerProps) {
   const [latestLoadID, setLatestLoadID] = useState<string | undefined>();
 
   const { getPost, getPostWhenBottom } = useGetPost();
+  const { startCooldown, isCooldown } = useCountdownCooldown({
+    cooldownTime: postConfig.fetchCooldown,
+    autoStart: false,
+  });
 
   useEffect(() => {
     const controller = new AbortController();
@@ -23,9 +29,12 @@ export function PostContainer({ className, ...props }: PostContainerProps) {
       latestLoadID,
       setLatestLoadID,
       controller,
+      isCooldown,
+      startCooldown,
     });
 
     return () => controller.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -37,6 +46,8 @@ export function PostContainer({ className, ...props }: PostContainerProps) {
         setPosts,
         latestLoadID,
         setLatestLoadID,
+        isCooldown,
+        startCooldown,
       };
       getPostWhenBottom(scrollPercentage, getPostParams);
     };
@@ -45,7 +56,7 @@ export function PostContainer({ className, ...props }: PostContainerProps) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isFetching]);
+  }, [isFetching, isCooldown, getPostWhenBottom, latestLoadID, startCooldown]);
 
   return (
     <div {...props} className={cn("", className)}>
