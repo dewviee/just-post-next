@@ -5,6 +5,7 @@ import { TPost } from "@/types/post.type";
 import { cn } from "@/utils/classname";
 import { getScrollPercentage } from "@/utils/scroll";
 import React, { useEffect, useState } from "react";
+import Spinner from "../Spinner";
 import { PostItem } from "./PostItems";
 
 type PostContainerProps = React.HTMLAttributes<HTMLDivElement> & {};
@@ -63,6 +64,8 @@ export function PostContainer({ className, ...props }: PostContainerProps) {
       {posts.map((post) => (
         <PostItem key={post.id} post={post} />
       ))}
+
+      {(isFetching || isCooldown) && <Spinner />}
     </div>
   );
 }
