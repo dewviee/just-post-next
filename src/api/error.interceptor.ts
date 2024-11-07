@@ -2,6 +2,7 @@ import { LOCAL_STORAGE_KEYS } from "@/constants/localStorageKeys";
 import { EAuthErrCode } from "@/enums/auth";
 import type { TApiError } from "@/types/api.type";
 import type { RefreshAccessTokenResponse } from "@/types/auth.type";
+import { removeUserAccessToken } from "@/utils/user";
 import type { AxiosError, AxiosRequestConfig } from "axios";
 import { toast } from "react-toastify";
 import api from "./instance";
@@ -26,6 +27,7 @@ export async function errorInterceptor(err: unknown) {
     case EAuthErrCode.ACCESS_TOKEN_REVOKE:
     case EAuthErrCode.REFRESH_TOKEN_INVALID: {
       toast("Session Expired. Please login again.");
+      removeUserAccessToken();
       window.location.href = "/login";
       break;
     }
