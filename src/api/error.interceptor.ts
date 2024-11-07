@@ -15,7 +15,7 @@ export async function errorInterceptor(err: unknown) {
   switch (response?.errorCode) {
     case EAuthErrCode.ACCESS_TOKEN_EXPIRED: {
       const accessToken = await refreshAccessToken();
-      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, accessToken);
 
       const config = axiosErr.config as AxiosRequestConfig;
       return resolveWithNewToken(accessToken, config, axiosErr);
