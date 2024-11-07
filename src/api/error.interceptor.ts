@@ -20,6 +20,7 @@ export async function errorInterceptor(err: unknown) {
       return resolveWithNewToken(accessToken, config, axiosErr);
     }
 
+    case EAuthErrCode.TOKEN_INVALID:
     case EAuthErrCode.ACCESS_TOKEN_INVALID:
     case EAuthErrCode.REFRESH_TOKEN_REVOKE:
     case EAuthErrCode.ACCESS_TOKEN_REVOKE:
