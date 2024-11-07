@@ -4,6 +4,7 @@ import type { TApiError } from "@/types/api.type";
 import type { RefreshAccessTokenResponse } from "@/types/auth.type";
 import type { AxiosError, AxiosRequestConfig } from "axios";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 import api from "./instance";
 import { pathJustPostV1 } from "./path";
 
@@ -24,8 +25,8 @@ export async function errorInterceptor(err: unknown) {
     case EAuthErrCode.REFRESH_TOKEN_REVOKE:
     case EAuthErrCode.ACCESS_TOKEN_REVOKE:
     case EAuthErrCode.REFRESH_TOKEN_INVALID: {
-      alert("session expired!");
       redirect("/login");
+      toast("Session Expired. Please login again.");
     }
   }
 
