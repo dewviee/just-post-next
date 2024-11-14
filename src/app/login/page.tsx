@@ -28,7 +28,7 @@ export default function Login() {
           inputValue={password}
           onInputChange={handleSetPassword}
           label="Password"
-          type="password"
+          inputType="password"
         />
         <div>
           {"Don't have account? Register "}
