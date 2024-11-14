@@ -65,7 +65,9 @@ export function PostContainer({ className, ...props }: PostContainerProps) {
         <PostItem key={post.id} post={post} />
       ))}
 
-      {(isFetching || isCooldown) && <Spinner className="p-2" />}
+      {(isFetching || isCooldown || posts.length === 0) && (
+        <Spinner className="p-2" />
+      )}
     </div>
   );
 }
