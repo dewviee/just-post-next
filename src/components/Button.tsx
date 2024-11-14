@@ -10,7 +10,7 @@ const Button = ({ className, onClick, children, ...props }: ButtonProps) => {
     <button
       {...props}
       className={cn(
-        "rounded-full bg-primary px-4 py-1 text-white hover:border-gray-500 hover:bg-primaryActive",
+        "flex items-center gap-2 rounded-full bg-primary px-4 py-1 text-white hover:border-gray-500 hover:bg-primaryActive",
         className,
       )}
       onClick={onClick}
