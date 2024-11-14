@@ -9,10 +9,10 @@ import { AxiosError, AxiosResponse } from "axios";
  */
 export const handleApiRequest = async <R = AxiosResponse>(
   request: Promise<R>, // The promise for the API call
-  setIsFetching: (loading: boolean) => void, // Function to toggle fetching state
+  setIsFetching?: (loading: boolean) => void, // Function to toggle fetching state
 ): Promise<{ result: R | null; error: TApiError | unknown | null }> => {
   try {
-    setIsFetching(true); // Set loading state to true before making the request
+    setIsFetching?.(true); // Set loading state to true before making the request
 
     const result = await request; // Wait for the API call to complete
     return { result, error: null }; // Return the result, with no error
@@ -28,6 +28,6 @@ export const handleApiRequest = async <R = AxiosResponse>(
 
     return { result: null, error }; // Return null for result and pass the error
   } finally {
-    setIsFetching(false);
+    setIsFetching?.(false);
   }
 };
