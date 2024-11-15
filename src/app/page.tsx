@@ -1,5 +1,6 @@
 "use client";
 import { NavBar } from "@/components/NavBar";
+import { CreatePost } from "@/components/Post/CreatePost";
 import { PostContainer } from "@/components/Post/PostContainer";
 import { postConfig } from "@/config/post.config";
 import { useCountdownCooldown } from "@/hooks/useCountdownCooldown";
@@ -56,15 +57,23 @@ export default function Home() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isFetching, isCooldown, getPostWhenBottom, latestLoadID, startCooldown]);
+
+  const handleAddNewPost = (post: TPost) => {
+    setPosts((prevPosts) => [post, ...prevPosts]);
+  };
+
   return (
     <div className="grid grid-cols-[30%_40%_30%]">
       <NavBar active="home" />
       <div></div>
-      <PostContainer
-        posts={posts}
-        isFetching={isFetching}
-        isCooldown={isCooldown}
-      />
+      <div>
+        <CreatePost handleAddNewUserPost={handleAddNewPost} />
+        <PostContainer
+          posts={posts}
+          isFetching={isFetching}
+          isCooldown={isCooldown}
+        />
+      </div>
     </div>
   );
 }
