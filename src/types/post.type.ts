@@ -24,3 +24,19 @@ export type TGetPostResponse = {
     username: string;
   };
 };
+
+export type TPostPostRequest = {
+  content: string;
+};
+
+export type TPostPostResponse = {
+  data: {
+    content: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    user: {
+      username: string;
+    };
+  };
+};
