@@ -8,3 +8,9 @@ export const CONST_CONFIRM_PASSWORD_ERROR_MSG =
 
 export const CONST_CHANGE_USERNAME_SUCCESSFULLY =
   "Username update successfully";
+
+export const CONST_CHANGE_USER_PASSWORD_SUCCESSFULLY =
+  "Change Password Successfully";
+
+export const CONST_NEW_PASSWORD_NOT_MATCH =
+  "New Password not match! Please enter and try again";

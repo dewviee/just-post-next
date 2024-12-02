@@ -3,6 +3,7 @@ import { NavBar } from "@/components/NavBar";
 import { useUser } from "@/hooks/useUser";
 import { TUserProfile } from "@/types/user.type";
 import { useEffect, useState } from "react";
+import ChangePassword from "./components/ChangePassword";
 import EditUsername from "./components/EditUsername";
 
 export default function Account() {
@@ -41,6 +42,8 @@ export default function Account() {
           user={user}
           onRefetchUserProfile={handleRefetchUserProfile}
         />
+
+        <ChangePassword />
       </div>
     </div>
   );

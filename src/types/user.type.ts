@@ -21,3 +21,8 @@ export type TUserProfile = {
 export type TPutUserProfileRequest = {
   username?: string;
 };
+
+export type TPutChangeUserPasswordRequest = {
+  oldPassword: string;
+  password: string;
+};

@@ -8,6 +8,7 @@ export const pathJustPostV1 = {
   user: {
     getUserProfile: "/v1/user/profile",
     updateUserProfile: "v1/user/profile",
+    changePassword: "/v1/user/change-password",
   },
   post: {
     createPost: "/v1/post",
