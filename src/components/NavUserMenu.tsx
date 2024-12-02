@@ -28,7 +28,7 @@ export function NavUserMenu({
 
   const MenuListsComp = () => {
     const menus: MenuList[] = [
-      { name: "Profile", linkTo: "/Profile" },
+      { name: "Account", linkTo: "/account" },
       { name: "Logout", onClick: handleLogout },
     ];
 
