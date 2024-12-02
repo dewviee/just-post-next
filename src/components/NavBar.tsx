@@ -30,7 +30,7 @@ type menuLists = {
 };
 
 /** must order with @menuLists */
-const pageLists = ["home"] as const;
+const pageLists = ["none", "home"] as const;
 
 export function NavBar({ className, active }: NavBarProps) {
   const router = useRouter();
@@ -71,8 +71,8 @@ export function NavBar({ className, active }: NavBarProps) {
     return menuLists.map((menu, index) => (
       <Button
         className={cn(
-          "bg-white p-3 font-bold text-black hover:bg-gray-200",
-          active === pageLists[index] ? "font-bold" : "",
+          "bg-white p-3 text-black hover:bg-gray-200",
+          active === pageLists[index + 1] ? "font-bold" : "",
         )}
         key={`${menu.label}-${index}`}
       >
