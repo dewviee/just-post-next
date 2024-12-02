@@ -75,6 +75,7 @@ export function NavBar({ className, active }: NavBarProps) {
           active === pageLists[index + 1] ? "font-bold" : "",
         )}
         key={`${menu.label}-${index}`}
+        onClick={menu.onclick}
       >
         {menu.icon}
         <span className="hidden w-16 sm:block">{menu.label}</span>
