@@ -1,8 +1,18 @@
 import api from "@/api/instance";
 import { pathJustPostV1 } from "@/api/path";
-import { TGetUserProfileResponse, TUserProfile } from "@/types/user.type";
+import {
+  TGetUserProfileResponse,
+  TPutChangeUserPasswordRequest,
+  TUserProfile,
+} from "@/types/user.type";
 import { handleApiRequest } from "@/utils/api";
 import { formatUserProfileResponse, getUserAccessToken } from "@/utils/user";
+
+export type TChangePasswordForm = {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+};
 
 export function useUser() {
   const getUserProfileFromAccessToken = async (
@@ -49,5 +59,34 @@ export function useUser() {
     onSuccess();
   };
 
-  return { getUserProfileFromAccessToken, updateUserProfile };
+  const changeUserPassword = async (
+    formData: TChangePasswordForm,
+    onSuccess: () => void,
+    onError?: (error: unknown) => void,
+  ) => {
+    const payload = {
+      oldPassword: formData.oldPassword,
+      password: formData.newPassword,
+    } as TPutChangeUserPasswordRequest;
+
+    const accessToken = getUserAccessToken();
+    const request = api.put(pathJustPostV1.user.changePassword, payload, {
+      headers: { Authorization: accessToken },
+    });
+
+    const { error } = await handleApiRequest(request);
+
+    if (error) {
+      onError?.(error);
+      return;
+    }
+
+    onSuccess();
+  };
+
+  return {
+    getUserProfileFromAccessToken,
+    updateUserProfile,
+    changeUserPassword,
+  };
 }
