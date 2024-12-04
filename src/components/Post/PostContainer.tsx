@@ -8,6 +8,7 @@ type PostContainerProps = React.HTMLAttributes<HTMLDivElement> & {
   posts: TPost[];
   isFetching?: boolean;
   isCooldown?: boolean;
+  handleToggleLike?: (postId: string) => void;
 };
 
 export function PostContainer({
@@ -15,12 +16,17 @@ export function PostContainer({
   posts,
   isFetching,
   isCooldown,
+  handleToggleLike,
   ...props
 }: PostContainerProps) {
   return (
     <div {...props} className={cn("pb-3", className)}>
       {posts.map((post) => (
-        <PostItem key={post.id} post={post} />
+        <PostItem
+          key={post.id}
+          post={post}
+          handleToggleLike={() => handleToggleLike?.(post.id)}
+        />
       ))}
 
       {(isFetching || isCooldown || posts.length === 0) && (

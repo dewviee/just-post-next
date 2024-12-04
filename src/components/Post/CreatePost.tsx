@@ -48,6 +48,8 @@ export function CreatePost({
         createdAt: convertDate(post.createdAt),
         updatedAt: convertDate(post.updatedAt),
         user: post.user,
+        like: post.like ?? 0,
+        isLike: post.isLike ?? false,
       };
 
       handleAddNewUserPost?.(formattedPost);
