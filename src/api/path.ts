@@ -13,5 +13,6 @@ export const pathJustPostV1 = {
   post: {
     createPost: "/v1/post",
     getPosts: "/v1/post",
+    likePost: "/v1/post/like",
   },
 };
