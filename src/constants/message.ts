@@ -14,3 +14,6 @@ export const CONST_CHANGE_USER_PASSWORD_SUCCESSFULLY =
 
 export const CONST_NEW_PASSWORD_NOT_MATCH =
   "New Password not match! Please enter and try again";
+
+export const CONST_ERROR_LIKE_POST =
+  "Something went wrong with like/unlike post.";

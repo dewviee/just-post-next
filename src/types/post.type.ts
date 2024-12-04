@@ -6,6 +6,8 @@ export type TPost = {
   content: string;
   createdAt: Dayjs;
   updatedAt: Dayjs;
+  like: number;
+  isLike: boolean;
   user: TUserProfile;
 };
 
@@ -20,6 +22,8 @@ export type TGetPostResponse = {
   content: string;
   createdAt: string;
   updatedAt: string;
+  like: number;
+  isLike: boolean;
   user: {
     username: string;
   };
@@ -38,5 +42,7 @@ export type TPostPostResponse = {
     user: {
       username: string;
     };
+    like: number;
+    isLike: boolean;
   };
 };
